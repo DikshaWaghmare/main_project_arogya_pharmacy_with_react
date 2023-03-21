@@ -103,9 +103,9 @@ let findCustomerByName = async (req, res) => {
     try {
       let result = await custModel.findOne({ name: custName });
       if (result == null) {
-        res.json({ msg: "Record not Found!" });
-      } else {
-        res.json(result);
+        res.json({ "msg": "Record not Found!" });
+      }  else {
+        res.json({"msg" : "Record Present!",customer:result});
       }
     } catch (err) {
       res.json({ msg: "Error generated " + err });

@@ -94,6 +94,7 @@ function SignUp() {
                             <input type="number" className="form-control" id="mobileNo" onChange={(e) => setMobileNo(e.target.value)} onKeyDown={cleanMsg} />
                         </div>
                     </div>
+                    
                     <div className="row mb-3">
                         <label className="col-sm-3 col-form-label">Address</label>
                         <div className="col-sm-9">

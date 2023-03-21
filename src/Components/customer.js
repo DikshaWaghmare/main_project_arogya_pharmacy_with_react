@@ -3,6 +3,24 @@ import '../CSS Files/App.css'
 import axios from "axios";
 import { useState } from "react";
 function Customer() {
+    let CustomerName = sessionStorage.getItem("userName")
+    var custname = CustomerName.replace(/"/g, '')
+    let [greeting, setGreeting] = useState("")
+    function Greeting() {
+
+        var today = new Date();
+        let hoursMin = today.getHours() + '.' + today.getMinutes();
+        // console.log(hoursMin);
+        if (hoursMin <= 11.59) {
+            setGreeting("Good Morning🌄 " + custname);
+        } else if (hoursMin >= 12.00 && hoursMin <= 15.59) {
+            setGreeting("Good Afternoon🕑 " + custname);
+        } else if (hoursMin >= 16.00 && hoursMin <= 20.59) {
+            setGreeting("Good Evening🌆 " + custname);
+        } else {
+            setGreeting("Working Late 🌃 " + custname);
+        }
+    }
     // for search category set variables
     let [category, setCategory] = useState("");
     let [cname, setCName] = useState("");
@@ -83,11 +101,15 @@ function Customer() {
     // -------------------------------------------------------------------------------------------------------------------------------------------------------------------
     return (
         <div>
+            <body onLoad={Greeting}>
             <div className="p-3 text-end mt-3 pe-5">
                 <a className="btn btn-primary" href="/">Log Out <i className="fa-solid fa-arrow-right-from-bracket"></i></a>
             </div>
             {/* ==================================================================================================================== */}
             {/* Search Buttons */}
+            <div className="text-center my-3 py-3 mx-auto adminHeading fs-4 fw-semibold " style={{ height: "65px", boxShadow: "0px 0px 5px blue" }}>
+                {greeting}
+            </div>
             <div className="container d-flex flex-wrap justify-content-evenly mx-5">
                 <div className="" style={{ width: "50%" }}>
                     <div className="accordion" id="accordionPanelsStayOpenExample">
@@ -122,9 +144,13 @@ function Customer() {
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
                                 <div className="input-group" style={{ height: "auto" }}>
-                                    <input type="search" className="rounded-start border  border-end-0 border-dark mx-auto fs-6" id="categoryName"
+                                    <input type="search" className="rounded-start border form-control border-end-0 border-dark mx-auto fs-6" id="categoryName" list="datalistOptions"
                                         placeholder="Enter Product Name" name="pname" onChange={(event) => setPName(event.target.value)}
                                         aria-label="Enter Product Name" aria-describedby="button-addon2" style={{ width: "88.5%" }} />
+                                    <datalist id="datalistOptions">
+                                        <option value="Vicks Vaporub"></option>
+                                        <option value="Vicks Inhaler"></option>
+                                    </datalist>
                                     <button className=" btn btn-outline-secondary border border-1 border-start-0 border-dark" type="button" data-bs-toggle="collapse"
                                         id="button-addon2" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
                                         onClick={FindProduct}><i className="bi bi-search"></i></button>
@@ -161,7 +187,7 @@ function Customer() {
                             <div className="input-group" style={{ height: "auto", width: "230px" }}>
                                 <button className=" btn btn-outline-dark border border-1 border-dark" type="button" data-bs-toggle="collapse"
                                     id="button-addon2" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true"
-                                    onClick={FindCustData} style={{ height: "auto", width: "250px" }}>My Details <i className="bi bi-search"></i></button>
+                                    onClick={FindCustData} style={{ height: "auto", width: "250px" }}>My Details <i class="bi bi-person"></i></button>
                             </div>
                             {/* </button> */}
                         </h2>
@@ -368,7 +394,7 @@ function Customer() {
 
                 </div>
             </div>
-
+            </body>
         </div >
     )
 }

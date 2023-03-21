@@ -1,19 +1,56 @@
 import { img1 } from '../assest/Images/index';
+import '../CSS Files/admin.css';
 import axios from "axios";
 import { useState } from "react";
 function Admin() {
     // event.preventDefault();
-    // for search category set variables
-    // alert("welcome "+sessionStorage.getItem("userName"))
-    async function Greeting(){
-        alert("welcome "+sessionStorage.getItem("userName"))
-        let result=await axios.get ("http://localhost:3000/api/customer/findCustomerByName/"+(sessionStorage.getItem("userName")),{
+    let CustomerName = sessionStorage.getItem("userName")
+    var custname = CustomerName.replace(/"/g, '')
+    let [greeting, setGreeting]=useState("")
+    function Greeting(){
+        var today = new Date();
+        let hoursMin = today.getHours() + '.' + today.getMinutes();
+        // console.log(hoursMin);
+        if (hoursMin <= 11.59) {
+           setGreeting("Good Morning🌄 " + custname);
+        } else if (hoursMin >= 12.00 && hoursMin <= 15.59) {
+            setGreeting("Good Afternoon🕑 " +custname);
+        } else if (hoursMin >= 16.00 && hoursMin <= 20.59) {
+            setGreeting("Good Evening🌆 " + custname);
+        } else {
+            setGreeting("Working Late 🌃 " + custname);
+        }
+        }
+    // for search customer
+    let [customer, setCustomer] = useState("");
+    let [CustName, setCustName] = useState("");
+    let [custresult, setResultcust] = useState(false);
+    let [cmsg, setCustMsg] = useState("");
+    // let pass = (sessionStorage.getItem("userPassword"));
+    async function FindCustData() {
+        let result = await axios.get("http://localhost:3000/api/customer/findCustomerByName/" + CustName, {
             headers: { "authorization": sessionStorage.getItem("token") }
-    });
-        console.log(result)
+        })
+        console.log(result.data)
+        if (result.data.msg === "Unathorized request or user") {
+            alert(result.data.msg);
+
+        } else if (result.data.msg === "Record Present!") {
+            setResultcust(true);
+            setCustomer(result.data.customer);
+            setCustMsg("")
+        }
+        else {
+            setResultp(false);
+
+            setCustMsg(result.data.msg);
+        }
     }
-
-
+    function cleanCustdata() {
+        setResultcust("");
+        setCustMsg("")
+    }
+    // for search category
     let [category, setCategory] = useState("");
     let [cname, setCName] = useState("");
     let [cresult, setResultc] = useState(false);
@@ -122,11 +159,12 @@ function Admin() {
         setResults("");
     }
     return (
-        <div > 
-<button onClick={Greeting}>hello</button>
+        <div >
+            <body onLoad={Greeting}>
+
             <section>
                 {/* navbar */}
-                <nav className="navbar navbar-expand-lg bg-dark  d-flex row border">
+                <nav className="navbar navbar-expand-lg   d-flex row border" style={{backgroundColor:"rgb(0, 153, 204)"}}>
                     <div className="container-fluid ps-4">
                         <div className="">
                             <a class="navbar-brand ms-3 text-white" href="#"><img src={img1} style={{ height: "50px", width: "50px", borderRadius: "50%" }} /><b className="fs-4 ">आपली</b>Pharmacy❤️
@@ -157,22 +195,22 @@ function Admin() {
             <section>
                 <div className="d-flex" style={{ height: "100%" }}>
                     {/* left-side-black-part */}
-                    <div className="border bg-dark" style={{ width: "20%", height: "700px" }}>
+                    <div className="border" style={{ width: "20%", height: "700px",backgroundColor:"rgb(0, 153, 204)" }}>
                         <div className="ps-4">
                             <nav id="navbar-example3" className=" flex-column align-items-stretch pe-4 ">
                                 <div className="input-group my-3" style={{ height: "auto", width: "auto" }}>
-                                    <input type="text" id="custId" placeholder="Enter Customer Id"
-                                        className="rounded-start bg-dark border border-1 border-white border-end-0" />
+                                    <input type="search" id="custId" placeholder="Enter Customer Id" style={{backgroundColor:"rgb(0, 153, 204)"}}
+                                        className="rounded-start border border-1 border-white border-end-0"  />
                                     <button className="btn btn-outline-secondary border border-1 border-start-0 border-white"
                                         type="button" id="button-addon2"><i className="bi bi-search"></i></button>
                                 </div>
                                 <nav className="nav nav-pills flex-column">
                                     <a className="nav-link text-black text-white" href="#">Dashboard</a>
                                     <a className="nav-link text-black text-white" href="#">Customers</a>
-                                    <a className="nav-link text-black text-white" href="#">Category</a>
-                                    <a className="nav-link text-black text-white" href="#">Products</a>
-                                    <a className="nav-link text-black text-white" href="#">Orders</a>
-                                    <a className="nav-link text-black text-white" href="#">Salesman</a>
+                                    <a className="nav-link text-black text-white" href="/category">Category</a>
+                                    <a className="nav-link text-black text-white" href="/product">Products</a>
+                                    <a className="nav-link text-black text-white" href="/order">Orders</a>
+                                    <a className="nav-link text-black text-white" href="/salesman">Salesman</a>
                                 </nav>
                             </nav>
                         </div>
@@ -181,11 +219,12 @@ function Admin() {
                     <div className="" style={{ width: "80%", backgroundImage: `url(./Images/adminbg.jpg)`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "100% 100%" }}>
 
                         {/* <!-- greeting --> */}
-                        <div className="text-center my-3 py-2 mx-auto adminHeading" id="cheading">
+                        <div  className="text-center my-3 py-3 mx-auto adminHeading fs-4 fw-semibold " style={{ height: "65px", boxShadow: "0px 0px 5px blue" }}>
+                        {greeting}
                         </div>
 
                         {/* <!--Accordions  --> */}
-                        <div className="accordion mx-5 " id="accordionPanelsStayOpenExample">
+                        <div className="accordion mx-5 mt-5" id="accordionPanelsStayOpenExample">
 
                             {/* <!-- customers --> */}
                             <div className="accordion-item border-dark ">
@@ -205,7 +244,7 @@ function Admin() {
                                                 <div className="input-group" style={{ height: "auto", width: "auto" }}>
                                                     <a href="/viewCustData" target="popup" className=""
                                                         onClick="window.open('/viewCustData','popup'; return false;">
-                                                        <input type="button" className="btn btn-outline-success rounded-start"
+                                                        <input type="button" className="btn btn-outline-success rounded-end-0 border border-1 border-success"
                                                             value="View All Data" /></a>
                                                     <button
                                                         className="btn-close rounded-end border  border-dark pe-3 pt-3"
@@ -214,18 +253,45 @@ function Admin() {
                                                 </div>
 
                                                 <div className="d-flex">
-                                                    <div className="text-start px-5 fs-5">Find Customers:</div>
+                                                    <div className="text-start px-5 fs-5">Find Customer:</div>
                                                     <div className="input-group" style={{ height: "auto", width: "auto" }}>
 
-                                                        <input type="search" id="cname"
-                                                            className="rounded-start border border-1 border-dark border-end-0"
-                                                            placeholder="Enter Customer Name" />
-                                                        <button
-                                                            className="btn btn-outline-secondary border border-1 border-start-0 border-dark"
-                                                            type="button" id="button-addon2"><i className="bi bi-search"></i>
-                                                        </button>
-                                                        <button className="btn btn-outline-secondary" type="button" id="button-addon2" >
-                                                            <span style={{ fontSize: "15px" }}>❌</span></button>
+                                                        <div className="accordion me-5" id="accordionPanelsStayOpenExample">
+                                                            <div className="accordion-item ">
+                                                                <h2 className="accordion-header" id="panelsStayOpen-headingTen">
+                                                                    <div className="input-group" style={{ height: "auto", width: "313px" }}>
+                                                                        <input type="search" className="rounded-start border  border-end-0 border-dark mx-auto fs-6" id="categoryName"
+                                                                            placeholder="Enter Customer Name" name="CustName" onChange={(event) => setCustName(event.target.value)}
+                                                                            aria-label="Enter Customer Name" aria-describedby="button-addon2" style={{ width: "239px" }} />
+                                                                        <button className=" btn btn-outline-secondary border border-1 border-start-0 border-dark" type="button" data-bs-toggle="collapse"
+                                                                            id="button-addon2" data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="true"
+                                                                            onClick={FindCustData}><i className="bi bi-search"></i></button>
+                                                                        <button className="btn btn-close border border-1 border-dark border-start-0 p-2 pb-3" type="button" data-bs-toggle="collapse"
+                                                                            id="button-addon2" aria-controls="panelsStayOpen-collapseTen" data-bs-target="#panelsStayOpen-collapseTen" onClick={cleanCustdata}></button>
+                                                                    </div>
+                                                                    {/* </button> */}
+                                                                </h2>
+                                                                <div id="panelsStayOpen-collapseTen" className="accordion-collapse collapse"
+                                                                    aria-labelledby="panelsStayOpen-headingTen">
+                                                                    <div className="accordion-body ">
+                                                                        <div className="my-1">
+                                                                            <div className="my-1">
+                                                                                {cmsg}
+                                                                                {custresult ? "Id- " + customer._id : ""}<br />
+                                                                                {custresult ? "Name- " + customer.name : ""}<br />
+                                                                                {custresult ? "Email- " + customer.email : ""}<br />
+                                                                                {/* {custresult ? "Password- "+customer.password:""}<br /> */}
+                                                                                {custresult ? "Gender- " + customer.gender : ""}<br />
+                                                                                {custresult ? "Age- " + customer.age : ""}<br />
+                                                                                {custresult ? "MobileNo- " + customer.mobileNo : ""}<br />
+                                                                                {custresult ? "Address- " + customer.address : ""}<br />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -488,14 +554,14 @@ function Admin() {
                                                             <div className="accordion-body ">
                                                                 <div className="" >
                                                                     {smsgInfo}
-                                                                    {sresult ? "Id- " + salesman._id : ""}<br/>
+                                                                    {sresult ? "Id- " + salesman._id : ""}<br />
                                                                     {sresult ? "Name- " + salesman.name : ""}<br />
                                                                     {sresult ? "Email- " + salesman.email : ""}<br />
                                                                     {sresult ? "Password- " + salesman.password : ""}<br />
                                                                     {sresult ? "Gender- " + salesman.gender : ""}<br />
                                                                     {sresult ? "Age- " + salesman.age : ""}<br />
                                                                     {sresult ? "MobileNo- " + salesman.mobileNo : ""}<br />
-                                                                    {sresult ? "Address- " + salesman.address : ""}<br /> 
+                                                                    {sresult ? "Address- " + salesman.address : ""}<br />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -526,7 +592,7 @@ function Admin() {
             </section>
 
 
-
+            </body>
         </div>
     )
 }

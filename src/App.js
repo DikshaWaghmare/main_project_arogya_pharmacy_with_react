@@ -13,6 +13,10 @@ import ViewProductData from './Components/viewProductData';
 import ViewSalesmanData from './Components/viewSalesmanData';
 import AddOrder from './Components/AddOrder';
 import ViewOrderData from './Components/viewOrder';
+import Category from './Components/Category';
+import Product from './Components/product';
+import Order from './Components/order';
+import Salesman from './Components/salesman';
 function App() {
   return (
     <div className="">
@@ -33,6 +37,10 @@ function App() {
         <Route path='/viewSalesmanData' element={<ViewSalesmanData/>}></Route>
         <Route path='/addOrder' element={<AddOrder/>}></Route>
         <Route path='/viewOrder' element={<ViewOrderData/>}></Route>
+        <Route path='/category' element={<Category/>}></Route>
+        <Route path='/product' element={<Product/>}></Route>
+        <Route path='/order' element={<Order/>}></Route>
+        <Route path='/salesman' element={<Salesman/>}></Route>
 
       </Routes>
     </div>

@@ -1,8 +1,4 @@
-.dataTable,tr,td{
-    border: 1px solid red;
-    border-collapse: collapse;
-    
-}
+
 .adminHeading{
     width:90%; 
     height: 50px;
