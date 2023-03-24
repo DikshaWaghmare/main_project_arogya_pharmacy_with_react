@@ -121,7 +121,7 @@ let viewCategoryByName = async (req, res) => {
     if (result == null) {
       res.json({ "msg": "Record not Found!" });
     } else {
-      res.json({"msg" : "Record Present!",category:result});
+      res.json({"msg" : "Record Present!",result});
     }
   } catch (err) {
     res.json({ msg: "Error generated " + err });
@@ -165,7 +165,7 @@ let viewProductByCategoryName = async (req, res) => {
   try {
     let result = await productModel.findOne({ categoryName: cname });
     if (result == null) {
-      res.json({ msg: "Record not found!" });
+      res.json({ "msg": "Record not found!" });
     } else {
       res.json(result);
     }
@@ -174,7 +174,16 @@ let viewProductByCategoryName = async (req, res) => {
   }
 };
 // =======================================================================================================================================
-
+let deleteCustAccount=async (req,res)=>{
+  let cemail =req.params.email;
+  let result = await custModel.deleteOne({email:cemail})
+        //response.json(result);
+        if(result.deletedCount>0){
+            res.send("Account deleted successfully")
+        }else {
+            res.send("Account not present")
+        }
+}
 module.exports = {
   convertPasswordInHash,
   comparePasswordWithHash,
@@ -184,5 +193,6 @@ module.exports = {
   findCustomerByEmail,
   viewCategoryByName,
   viewProductByName,
-  viewProductByCategoryName
+  viewProductByCategoryName,
+  deleteCustAccount
 };

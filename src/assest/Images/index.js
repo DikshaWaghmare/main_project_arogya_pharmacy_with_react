@@ -50,3 +50,7 @@ export const offer=require('../Logos/special-offer.png');
 export const inheler=require('../Logos/inheler.webp');
 export const bpmonitor=require('../Logos/Blood-Pressure-Monitor.png');
 export const cyrup=require('../Logos/cyrup.webp');
+export const salesGraph = require('../Images/sales_graph.png');
+
+export const adminbg = require('../Images/adminbg.jpg');
+

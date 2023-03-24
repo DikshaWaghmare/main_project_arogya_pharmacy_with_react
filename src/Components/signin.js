@@ -24,17 +24,18 @@ function SignIn() {
        
         if (result.data.msg === "Admin successfully login!") {
             // alert(result.data.msg)
+            sessionStorage.setItem("token", result.data.token);
+            sessionStorage.setItem("userName", JSON.stringify(result.data.findUser.name))
             document.getElementById("msg").innerHTML = result.data.msg;
             navigate("/admin");
-            sessionStorage.setItem("token", result.data.token);
-            sessionStorage.setItem("userName", JSON.stringify(result.data.findUser.name))
+            
         } else if (result.data.msg === "Customer successfully login!") {
             // alert(result.data.msg);
-            document.getElementById("msg").innerHTML = result.data.msg;
-            navigate("/customer");
             sessionStorage.setItem("token", result.data.token);
             sessionStorage.setItem("userName", JSON.stringify(result.data.findUser.name))
-
+            document.getElementById("msg").innerHTML = result.data.msg;
+            navigate("/customer");
+           
         } else {
             document.getElementById("msg").innerHTML = result.data.msg;
         }
@@ -43,12 +44,12 @@ function SignIn() {
     function cleanMsg() {
         document.getElementById("msg").innerHTML = "";
     }
+    // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     return (
         <div>
             <div className="container-fluid border py-4" style={{
                 height: "760px", borderRadius: "10px", backgroundImage: `url(${signinbg})`, backgroundSize: "100% 100%", backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"
-            }}>
+                backgroundRepeat: "no-repeat"}}>
                 <div>
                     <a href="/"><input type="button" value="Back" className=" mt-3 fs-5 px-4" style={{ marginLeft: "50px", borderRadius: "8px", backgroundColor: " rgb(227, 243, 243)" }} /></a>
                 </div>

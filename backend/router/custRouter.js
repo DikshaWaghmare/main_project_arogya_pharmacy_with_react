@@ -25,9 +25,9 @@ router.get("/viewCategoryByName/:Cname",CustController.viewCategoryByName);
 //http://localhost:3000/api/customer/viewProductByName/:pname
 router.get("/viewProductByName/:pname",CustController.viewProductByName);
 
-//http://localhost:3000/api/customer/viewProductByCategoryName
+//http://localhost:3000/api/customer/viewProductByCategoryName/
 router.get("/viewProductByCategoryName/:categoryName",CustController.viewProductByCategoryName);
 
-//http://localhost:3000/api/customer/updatCustData
-//router.patch("/updatCustData",CustController.updatCustData);
+// http://localhost:3000/api/customer/deleteCustAccount/
+router.delete("/deleteCustAccount/:email",CustController.deleteCustAccount);
 module.exports=router;

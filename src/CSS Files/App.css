@@ -4,7 +4,21 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.pwd-container {
+  position: relative;
+}
+.pwd-container input {
+  padding: 5px 30px 5px 10px;
+  /* font-size: 20px; */
+}
 
+.pwd-container img {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  right: 25px;
+  top: 9px;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

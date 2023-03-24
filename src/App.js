@@ -7,16 +7,12 @@ import Customer from './Components/customer';
 import AddCategory from './Components/addCategory';
 import AddProduct from './Components/addProduct';
 import AddSalesman from './Components/addSalesman';
-import ViewCategoryData from './Components/viewCategoryData';
-import ViewCustData from './Components/viewCustData';
-import ViewProductData from './Components/viewProductData';
-import ViewSalesmanData from './Components/viewSalesmanData';
 import AddOrder from './Components/AddOrder';
-import ViewOrderData from './Components/viewOrder';
 import Category from './Components/Category';
 import Product from './Components/product';
 import Order from './Components/order';
 import Salesman from './Components/salesman';
+import CustData from './Components/customerData';
 function App() {
   return (
     <div className="">
@@ -31,16 +27,12 @@ function App() {
         <Route path='/addCategory' element={<AddCategory/>}></Route>
         <Route path='/addProduct' element={<AddProduct/>}></Route>
         <Route path='/addSalesman' element={<AddSalesman/>}></Route>
-        <Route path='/viewCategoryData' element={<ViewCategoryData/>}></Route>
-        <Route path='/viewCustData' element={<ViewCustData/>}></Route>
-        <Route path='/viewProductData' element={<ViewProductData/>}></Route>
-        <Route path='/viewSalesmanData' element={<ViewSalesmanData/>}></Route>
         <Route path='/addOrder' element={<AddOrder/>}></Route>
-        <Route path='/viewOrder' element={<ViewOrderData/>}></Route>
         <Route path='/category' element={<Category/>}></Route>
         <Route path='/product' element={<Product/>}></Route>
         <Route path='/order' element={<Order/>}></Route>
         <Route path='/salesman' element={<Salesman/>}></Route>
+        <Route path='/custData' element={<CustData/>}></Route>
 
       </Routes>
     </div>

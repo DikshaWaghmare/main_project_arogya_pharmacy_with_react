@@ -1,18 +1,23 @@
 import { signupbg } from "../assest/Images";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
+import showPwdImg from '../assest/Images/show-password.svg';
+import hidePwdImg from '../assest/Images/hide-password.svg';
+import '../CSS Files/App.css'
 function SignUp() {
     let [nameValue, setName] = useState();
     let [emailValue, setEmail] = useState();
     let [passwordValue, setPassword] = useState();
+    let [isRevealPwd, setIsRevealPwd] = useState(false);
     let [gender, setGender] = useState();
     let [age, setAge] = useState();
     let [mobileNo, setMobileNo] = useState();
     let [address, setAddress] = useState();
     let [typeOfUser, setTypeOfUser] = useState();
     let navigate = useNavigate();
-    async function storeCustomerInfo(event) {
+    async function storeCustomerInfo(event) { 
+        
         event.preventDefault();
         var customers = {
             name: nameValue,
@@ -26,22 +31,17 @@ function SignUp() {
         };
         //   console.log(customers);
         let result = await axios.post("http://localhost:3000/api/customer/signUp", customers);
+        console.log(result)
 
         if (result.data.msg === "Account created Successfully!") {
-            document.getElementById("msg").innerHTML = result.data.msg;
-            navigate("/customer");
-        } else {
+            document.getElementById("msg").innerHTML = result.data.msg +" Welcome! You Can Signin Now";
+        } else { 
             document.getElementById("msg").innerHTML = result.data.msg;
         }
+        
     }
     function reset() {
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-        document.getElementsByName("gender").value = "";
-        document.getElementById("age").value = "";
-        document.getElementById("mobileNo").value = "";
-        document.getElementById("address").value = "";
+        // nameValue=""
         document.getElementById("msg").innerHTML = "";
     }
     function cleanMsg() {
@@ -64,52 +64,61 @@ function SignUp() {
                     <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Enter Full Name</label>
                         <div className="col-sm-8">
-                            <input type="text" id="name" className="form-control" onChange={(e) => setName(e.target.value)} onKeyDown={cleanMsg} />
+                            <input type="text" id="name" placeholder="Enter Your Name" className="form-control" onChange={(e) => setName(e.target.value)} onKeyDown={cleanMsg} />
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Email</label>
                         <div className="col-sm-8">
-                            <input type="email" className="form-control" id="email" onChange={(e) => setEmail(e.target.value)} onKeyDown={cleanMsg} />
+                            <input type="email" className="form-control" placeholder="Enter Your Email" id="email" onChange={(e) => setEmail(e.target.value)} onKeyDown={cleanMsg} />
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Password</label>
-                        <div className="col-sm-8">
-                            <input type="password" className="form-control" id="password" onChange={(e) => setPassword(e.target.value)} onKeyDown={cleanMsg} />
+                        <div className="col-sm-8 pwd-container">
+                            <input className="form-control" placeholder="Enter Password" type={isRevealPwd ? "text" : "password"} id="password" onChange={(e) => setPassword(e.target.value)} onKeyDown={cleanMsg} />
+                            <img
+                                title={isRevealPwd ? "Hide password" : "Show password"}
+                                src={isRevealPwd ? hidePwdImg : showPwdImg}
+                                onClick={() => setIsRevealPwd(prevState => !prevState)}
+                            />
                         </div>
                     </div>
                     <div>
                         <label>Gender:</label>
-                        <input type="radio" name="gender" value="male" className="ms-3" onClick={(e) => setGender(e.target.value)} />Male
-                        <input type="radio" name="gender" value="female" className="ms-4" onClick={(e) => setGender(e.target.value)} />Female<br /><br />
+                        <input type="radio" name="gender" value="M" className="ms-3" onClick={(e) => setGender(e.target.value)} />Male
+                        <input type="radio" name="gender" value="F" className="ms-4" onClick={(e) => setGender(e.target.value)} />Female<br /><br />
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label">Age</label>
                         <div className="col-sm-3">
-                            <input type="number" className="form-control" id="age" onChange={(e) => setAge(e.target.value)} onKeyDown={cleanMsg} />
+                            <input type="number" className="form-control" placeholder="Enter age" id="age" onChange={(e) => setAge(e.target.value)} onKeyDown={cleanMsg} />
                         </div>
                         <label className="col-sm-3 col-form-label">Mobile No.:</label>
                         <div className="col-sm-4">
-                            <input type="number" className="form-control" id="mobileNo" onChange={(e) => setMobileNo(e.target.value)} onKeyDown={cleanMsg} />
+                            <input type="number" className="form-control" id="mobileNo" placeholder="Enter mobile no" onChange={(e) => setMobileNo(e.target.value)} onKeyDown={cleanMsg} />
                         </div>
                     </div>
-                    
+
                     <div className="row mb-3">
                         <label className="col-sm-3 col-form-label">Address</label>
                         <div className="col-sm-9">
-                            <input type="text" className="form-control" id="address" onChange={(e) => setAddress(e.target.value)} onKeyDown={cleanMsg} />
+                            <input type="text" placeholder="Enter current address" className="form-control" id="address" onChange={(e) => setAddress(e.target.value)} onKeyDown={cleanMsg} />
                         </div>
                     </div>
 
                     <label>Type Of User: </label>
                     <input type="radio" name="typeOfUser" value="admin" className="ms-3" onClick={(e) => setTypeOfUser(e.target.value)} />Admin
                     <input type="radio" name="typeOfUser" value="customer" className="ms-3" onClick={(e) => setTypeOfUser(e.target.value)} />Customer<br />
-                    <input type="submit" value="Create Acc" className=" mt-3 fs-5 px-2"
-                        style={{ marginLeft: "130px", borderRadius: "8px", backgroundColor: "rgb(122, 239, 241)" }} />
-                    <input type="reset" value="cancel" onClick={reset} className="ms-5 mt-3 fs-5 px-4"
-                        style={{ borderRadius: "8px", backgroundColor: "rgb(122, 239, 241)" }} /><br /><br />
-                    <span id="msg"></span>
+                    <div className="text-center">
+                    <input type="submit" value="Create Acc" className=" mt-4 fs-5 px-2 btn btn-info btn-sm"
+                        style={{borderRadius: "8px", backgroundColor: "rgb(122, 239, 241)" }} />
+                    <input type="reset" value="cancel" className="btn btn-info btn-sm ms-5 mt-4 fs-5 px-4" onClick={reset}
+                        style={{ borderRadius: "8px", backgroundColor: "rgb(122, 239, 241)" }} /><br />
+                    </div>
+                    <p className="text-center">Already have an Account? <Link to="/signin">SignIn</Link></p>
+                   
+                    <span id="msg" ></span>
                 </form>
 
             </div>
