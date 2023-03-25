@@ -115,10 +115,11 @@ function Admin() {
             setResultc(true);
             setCategory(result.data.category);
             // alert(result.data.msg);
+            setMsgInfoC("")
         }
         else {
             setResultc(false);
-            setCategory(result.data.msg);
+            setMsgInfoC(result.data.msg);
             // alert(result.data.msg);
         }
     }
@@ -285,8 +286,8 @@ function Admin() {
         <div >
             <body >
 
+                {/* navbar */}
                 <section>
-                    {/* navbar */}
                     <nav className="navbar navbar-expand-lg   d-flex row border" style={{ backgroundColor: "rgb(74, 144, 158)" }}>
                         <div className="container-fluid ps-4">
                             <div className="">
@@ -504,6 +505,7 @@ function Admin() {
                                                                 aria-labelledby="panelsStayOpen-headingSix">
                                                                 <div className="accordion-body ">
                                                                     <div className="my-1">
+                                                                        {cmsgInfo}
                                                                         {cresult ? "Category Id is " + category._id : ""}<br />
                                                                         {cresult ? "Category Name is " + category.Cname : ""}
                                                                     </div>

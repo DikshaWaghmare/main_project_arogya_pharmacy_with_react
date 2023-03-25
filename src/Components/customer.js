@@ -54,24 +54,28 @@ function Customer() {
     let [category, setCategory] = useState("");
     let [cname, setCName] = useState("");
     let [cresult, setResultc] = useState(false);
+    let [cmsg,setcMsg]=useState("");
 
     async function FindCategory() {
         let result = await axios.get("http://localhost:3000/api/customer/viewCategoryByName/" + cname);
-        console.log(result.data)
+        // console.log(result.data)
         if (result.data.msg === "Record Present!") {
             setResultc(true);
             setCategory(result.data.category);
+            setcMsg("");
             // alert(result.data.msg);
         }
         else {
             setResultc(false);
-            setCategory(result.data.msg);
+            // setCategory(result.data.msg);
             // alert(result.data.msg);
+            setcMsg(result.data.msg)
         }
     }
     async function cleanCategoryData() {
         setResultc("");
         setCName("");
+        setcMsg("");
     }
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------
     // product data
@@ -98,21 +102,25 @@ function Customer() {
     let [product, setProducts] = useState("");
     let [pname, setPName] = useState("");
     let [presult, setResultp] = useState(false);
+    let [pmsg,setpMsg]=useState("");
     async function FindProduct() {
         let result = await axios.get("http://localhost:3000/api/customer/viewProductByName/" + pname);
         console.log(result.data)
         if (result.data.msg === "Record Present!") {
             setResultp(true);
             setProducts(result.data.product);
+            setpMsg("")
         }
         else {
             setResultp(false);
-            setProducts(result.data.msg);
+            // setProducts(result.data.msg);
+            setpMsg(result.data.msg)
             // alert(result.data.msg)
         }
     }
     async function cleanProductData() {
         setResultp("");
+        setpMsg("");
     }
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -199,13 +207,13 @@ function Customer() {
                     {greeting}
                 </div>
                 <div className="p-3 text-end mt-3 pe-5">
-                    <a className="btn btn-outline-dark" href="/">Log Out <i className="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    <a className="btn btn-outline-dark" href="/">Log Out</a>
                 </div>
                 {/* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
                 {/* Search Buttons */}
                 <div className="container d-flex flex-wrap justify-content-evenly mx-5 ">
-                    <div className="" style={{ width: "50%" }}>
+                    <div className="" style={{ width: "49%" }}>
                         <div className="accordion" id="accordionPanelsStayOpenExample">
                             <div className="accordion-item ">
                                 <h2 className="accordion-header" id="panelsStayOpen-headingOne">
@@ -225,6 +233,7 @@ function Customer() {
                                     aria-labelledby="panelsStayOpen-headingOne">
                                     <div className="accordion-body ">
                                         <div className="my-1">
+                                            {cmsg}
                                             {cresult ? "Category Id is " + category._id : ""}<br />
                                             {cresult ? "Category Name is " + category.Cname : ""}
                                         </div>
@@ -257,6 +266,7 @@ function Customer() {
                                     aria-labelledby="panelsStayOpen-headingTwo">
                                     <div className="accordion-body ">
                                         <div className="" >
+                                            {pmsg}
                                             {presult ? "Product Id is " + product._id : ""}<br />
                                             {presult ? "Product Name is " + product.pname : ""}<br />
                                             {presult ? "Product Price is " + product.price : ""}<br />
@@ -398,6 +408,7 @@ function Customer() {
                                 className="bi bi-cart"></i></button>
                         </a>
                     </div>
+
                     {/* Customer Own order */}
                     <div>
                         <div className="card-body">

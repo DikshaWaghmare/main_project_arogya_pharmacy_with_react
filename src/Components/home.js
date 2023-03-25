@@ -22,6 +22,7 @@ function Home() {
     }, [])
     let ProductData = Products.map(obj => <tr key={obj._id}><td>{obj._id}</td><td>{obj.pname}</td><td>{obj.price}</td><td>{obj.quantity}</td><td>{obj.cid}</td><td>{obj.categoryName}</td></tr>)
     // ---------------------------------------------------------------------------------------------------------------------------------------------
+    
     return (
         <div className="">
             {/* Nav bar part----------------------------------------------- */}
@@ -116,37 +117,6 @@ function Home() {
                                 <div className="card-body">
                                     <p className=" mt-3  btn fs-5 fw-semibold">Cold and Cough</p>
                                 </div>
-                                {/* <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-                                    <div className="modal-dialog modal-xl modal-dialog-centered">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h1 className="modal-title fs-5" id="staticBackdropLabel">Products</h1>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div className="modal-body mb-5">
-                                                <h3 className="m-5 text-center">Product Details!</h3>
-                                                <table className=" table mx-auto border border-dark " style={{ width: "70%" }}>
-                                                    <thead className="table bg-white">
-                                                        <tr className="text-center border border-dark">
-                                                            <th>Id</th>
-                                                            <th>Product Name</th>
-                                                            <th>Price</th>
-                                                            <th>Quantity</th>
-                                                            <th>Category Id</th>
-                                                            <th>Category Name</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody className="text-center">
-                                                        {ProductData}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div className="modal-footer text-center" data-bs-dismiss="modal">
-                                                    <Link to="/signup" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>For More...<i className="bi bi-cart"></i></Link>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                             <div className=" my-3 mx-2 border CategoryProductCard">
                                 <img src={img7} className="card-img-top category-Product-img" alt="..." />
@@ -468,7 +438,6 @@ function Home() {
                     </div>
                 </section >
             </section >
-
 
             {/* About page area--------------------------------------------------------------------------------------------------------- */}
             < section id="about" style={{ backgroundColor: "gainsboro" }}>

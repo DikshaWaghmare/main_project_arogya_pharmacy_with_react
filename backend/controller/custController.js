@@ -121,7 +121,7 @@ let viewCategoryByName = async (req, res) => {
     if (result == null) {
       res.json({ "msg": "Record not Found!" });
     } else {
-      res.json({"msg" : "Record Present!",result});
+      res.json({"msg" : "Record Present!",category:result});
     }
   } catch (err) {
     res.json({ msg: "Error generated " + err });

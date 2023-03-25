@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+
 function Category(){
     let [category, setCategory] = useState("");
     let [cname, setCName] = useState("");
