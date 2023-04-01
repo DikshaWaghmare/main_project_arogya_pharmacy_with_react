@@ -22,20 +22,20 @@ function Home() {
     }, [])
     let ProductData = Products.map(obj => <tr key={obj._id}><td>{obj._id}</td><td>{obj.pname}</td><td>{obj.price}</td><td>{obj.quantity}</td><td>{obj.cid}</td><td>{obj.categoryName}</td></tr>)
     // ---------------------------------------------------------------------------------------------------------------------------------------------
-    
+
     return (
         <div className="">
             {/* Nav bar part----------------------------------------------- */}
-            <nav className="navbar navbar-expand-lg bg-info d-flex row border">
+            <nav className="navbar navbar-expand-lg bg-info">
                 <div className="container-fluid ps-4">
-                    <div className="">
-                        <a className="navbar-brand ms-3" href="#"><img src={img1} style={{ height: "50px", width: "50px", borderRadius: "50%" }} /><b className="fs-4 ">आपली</b>Pharmacy❤️
-                        </a>
-
-                    </div>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav  mb-2 mb-lg-0 fw-normal fs-5">
-                            <li className="nav-item" style={{ marginRight: "30px", marginLeft: "400px" }}>
+                    <a className="navbar-brand ms-3 col-4" href="#"><img src={img1} style={{ height: "50px", width: "50px", borderRadius: "50%" }} /><b className="fs-4 ">आपली</b>Pharmacy❤️
+                    </a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="col-4 collapse navbar-collapse ps-2" id="navbarSupportedContent">
+                        <ul className="navbar-nav mx-auto mb-lg-0 fw-normal fs-5">
+                            <li className="nav-item" style={{ marginRight: "30px", marginLeft: "" }}>
                                 <a className="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item" style={{ marginRight: "30px" }}>
@@ -44,18 +44,18 @@ function Home() {
                             <li className="nav-item" style={{ marginRight: "30px" }}>
                                 <a className="nav-link" href="#contactus">Contact</a>
                             </li>
-                            <li className="nav-item" style={{ marginRight: "30px", marginLeft: "270px" }}>
+                        </ul>
+                    </div>
+                    <div className=' col-4 collapse navbar-collapse ps-2 p-1' id="navbarSupportedContent">
+                        <ul className="navbar-nav mb-2 mx-auto fw-normal fs-5">
+                            <li className="nav-item" style={{ marginRight: "30px", marginLeft: "" }}>
                                 <Link to="/signup" style={{ textDecoration: "none" }} className="text-dark"> <i className="bi bi-person"></i> Sign Up</Link></li>
-                            {/* <a href="#" target="_blank" className="nav-link"><i className="bi bi-person"></i> Sign up</a></li> */}
-                            <li className="nav-item" >
+                            <li className="nav-item">
                                 <Link to="/signin" style={{ textDecoration: "none" }} className="text-dark"> <i className="bi bi-box-arrow-in-right"></i> Sign in</Link>
-                                {/* <a href="#" target="_blank" className="nav-link"><i className="bi bi-box-arrow-in-right"></i> Sign in</a> */}
                             </li>
                         </ul>
                     </div>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+
                 </div>
             </nav>
 
@@ -65,12 +65,12 @@ function Home() {
 
                 {/* Opening Part Section */}
                 <section>
-                    <div className='container pt-5 d-flex' style={{ height: "420px" }}>
-                        <div className='text-center ms-5' style={{ width: "50%", padding: "70px 30px" }}>
+                    <div className='container pt-5 d-flex flex-wrap' style={{}}>
+                        <div className='text-center col-lg-6 col-sm-12 ' style={{ padding: "70px 30px" }}>
                             <h4 style={{ fontStyle: "oblique" }}>"Medication is our business - your health,<br />our mission. "</h4>
                             <p className=" text-center " style={{ fontSize: "19px" }}>A pharmacy that respects the autonomy and dignity of each patient. A pharmacy that promotes the right of self-determination and recognizes individual self-worth by encouraging patients to participate in decisions about their health. A pharmacy communicates with patients in terms that are understandable. In all cases, this is the pharmacy that respects personal and cultural differences among patients.</p>
                         </div>
-                        <div className="p-3" style={{ height: "370px", width: "50%" }}>
+                        <div className="p-3 col-lg-6 col-sm-12 " style={{}}>
                             <img src={img2} style={{ height: "100%", width: "100%" }} />
                         </div>
                     </div>
@@ -78,7 +78,7 @@ function Home() {
 
                 {/* Crousal part */}
                 <section>
-                    <div id="carouselExampleControls" className="carousel slide container mt-5 mb-4" style={{ width: "70%" }}
+                    <div id="carouselExampleControls" className="carousel slide container-sm mt-5 mb-4"
                         data-bs-ride="carousel">
                         <div className="carousel-inner">
                             <div className="carousel-item active">
@@ -152,7 +152,7 @@ function Home() {
                                     <p className=" categoryProduct fs-5 fw-semibold mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >HealthCare Devices</p>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </section>
@@ -356,7 +356,7 @@ function Home() {
                             <h3 className='text-success'>Booked Lab Tests <i className="bi bi-clipboard2-pulse-fill"></i></h3>
                         </div>
                         <div className="d-flex flex-wrap mb-3  justify-content-evenly">
-                            <div className=" border border-1 border-dark rounded-4 bg-light" style={{ height: "270px", width: "400px" }}>
+                            <div className=" border border-1 border-dark rounded-4 bg-light my-3" style={{ height: "270px", width: "400px" }}>
                                 <a href="#" style={{ textDecoration: "none" }}><h4 className="my-3 text-center text-dark">Full Body Health Checkup</h4></a>
                                 <div className=" d-flex justify-content-evenly">
 
@@ -373,7 +373,7 @@ function Home() {
                                 </div>
                             </div>
 
-                            <div className=" border border-1 border-dark rounded-4 bg-light" style={{ height: "270px", width: "400px" }}>
+                            <div className=" border border-1 border-dark rounded-4 bg-light my-3" style={{ height: "270px", width: "400px" }}>
                                 <a href="#" style={{ textDecoration: "none" }}><h4 className="my-3 text-center text-dark">Kids Health Checkup</h4></a>
                                 <div className=" d-flex justify-content-evenly">
 
@@ -390,7 +390,7 @@ function Home() {
                                 </div>
                             </div>
 
-                            <div className=" border border-1 border-dark rounded-4 bg-light" style={{ height: "270px", width: "400px" }}>
+                            <div className=" border border-1 border-dark rounded-4 bg-light my-3" style={{ height: "270px", width: "400px" }}>
                                 <a href="#" style={{ textDecoration: "none" }}><h4 className="my-3 text-center text-dark">Diabetes Checkup</h4></a>
                                 <div className=" d-flex justify-content-evenly">
 
@@ -446,17 +446,15 @@ function Home() {
                     <div className="container-fluid p-3 my- text-center">
                         <h3 className=" p-3 my-2">Know About Us!</h3>
                     </div>
-                    <div className="container mb-4" style={{
+                    <div className="container mb-4" style={{ position:'relative', 
                         height: "450px", borderRadius: "10px", backgroundImage: `url(${aboutbg})`, backgroundSize: "100% 100%", backgroundPosition: "center",
                         backgroundRepeat: "no-repeat"
                     }}>
-                        <div className="about-img1-bg-color">
+                        <div className="about-img1-bg-color" style={{position:"absolute"}}>
                             <div className="text-white text-center mx-auto fs-5">
-                                {/* <!-- <h1><b>ABOUT</b></h1> --> */}
                                 <p className="fs-4 font-monospace">"Good health is not something we can buy.<br /> However, it can be
                                     an
                                     extremely valuable savings account."<br />
-                                    {/* <!-- We have the Pharmacists you can count on. Our pharmacist will make sure your most valuable health assest thrives." --> */}
                                 </p>
                             </div>
                         </div>
@@ -464,13 +462,10 @@ function Home() {
                 </section>
 
                 <section>
-                    <div className="container d-flex my-4" style={{
-                        height: "450px", borderRadius: "10px", backgroundImage: `url(${aboutus})`, backgroundSize: "100% 100%", backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat"
-                    }}>
-                        <div className=" p-5 " style={{ width: "50%" }}>
+                    <div className="container d-flex my-4" id="aboutus-bg-img2" >
+                        <div className="p-5" id='AboutParagraph' >
                             <h3 className='text-center'>"A pharmacy that believes in making families"</h3>
-                            <p className='text-center' style={{ fontSize: "19px" }}>
+                            <p className='text-center ' >
                                 As a pharmacist our team promotes the good of every patient in a caring, compassionate, and confidential manner. We places concern for the well-being of the patient at the center of professional practice. In doing so, we considers needs stated by the patient as well as those defined by health science. We all are dedicated to protecting the dignity of the patient. With a caring attitude and a compassionate spirit, our team focuses on serving the patient in a private and confidential manner.
                                 <br /><span className='fw-semibold'><i>Our mission: To help you and your family <br /> reach your health goals</i> </span>
                             </p>
@@ -519,14 +514,14 @@ function Home() {
                     borderRadius: "10px", backgroundImage: `url(${contactusbg})`, backgroundSize: "100% 100%", backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"
                 }}>
-                    <div className="p-1 mt-4">
-                        <h2 className="" style={{ textAlign: "start", marginLeft: "500px" }}>Contact Us <i className="bi bi-headset"></i> </h2>
+                    <div className="p-1 mt-4 contactus-heading">
+                        <h2 className="" >Contact Us <i className="bi bi-headset"></i> </h2>
                     </div>
-                    <hr className="" style={{ width: "800px", marginLeft: "170px", color: "black" }} />
-                    <div className="container p-4 my-3"
-                        style={{ marginLeft: "90px", height: "450px", width: "65%", borderRadius: "10px" }}>
-                        <div className="d-flex flex-row justify-content-evenly">
-                            <div className="text-left mt-4">
+                    <hr className="hr-line" style={{ }} />
+                    <div className="container p-4 my-3 "
+                        style={{  height: "", borderRadius: "10px" }}>
+                        <div className="d-flex row justify-content-evenly ">
+                            <div className=" mt-4 col-lg-5 col-sm-12 col-md-12 ps-5">
                                 <div className="">
                                     <h4 className='text-start'><img src={"https://img.icons8.com/fluency/48/000000/address.png"} /> Address</h4>
                                     <p className="contact-link">512,oldmadrasrdblr-16, Doorvaninagar<br />
@@ -544,9 +539,9 @@ function Home() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-md-6" style={{ width: "400px" }}>
+                            <div className="col-lg-7 col-md-12 col-sm-12 p-3" >
                                 <h4> Send Message</h4>
-                                <form>
+                                <form className="col-lg-6 col-sm-12 col-md-12" style={{}}>
                                     <input type="name" className="form-control mt-4 input-box" placeholder="Full Name" /><br />
                                     <input type="email" className="form-control input-box" placeholder="Email" /><br />
                                     <label for="text" className="form-label">Type your Message...</label>
