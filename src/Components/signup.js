@@ -1,7 +1,7 @@
 import { signupbg } from "../assest/Images";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate ,Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import showPwdImg from '../assest/Images/show-password.svg';
 import hidePwdImg from '../assest/Images/hide-password.svg';
 import '../CSS Files/App.css'
@@ -15,7 +15,6 @@ function SignUp() {
     let [mobileNo, setMobileNo] = useState();
     let [address, setAddress] = useState();
     let [typeOfUser, setTypeOfUser] = useState();
-    let navigate = useNavigate();
     async function storeCustomerInfo(event) { 
         
         event.preventDefault();

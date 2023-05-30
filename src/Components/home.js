@@ -6,23 +6,6 @@ import { useEffect, useState } from "react";
 import '../CSS Files/home.css';
 function Home() {
 
-    // Producy Data
-    let [Products, setAllProducts] = useState([]);
-    useEffect(() => {
-        async function viewProductData() {
-            try {
-                let result = await axios.get("http://localhost:3000/api/admin/viewAllProducts")
-                setAllProducts(result.data);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
-        viewProductData();
-    }, [])
-    let ProductData = Products.map(obj => <tr key={obj._id}><td>{obj._id}</td><td>{obj.pname}</td><td>{obj.price}</td><td>{obj.quantity}</td><td>{obj.cid}</td><td>{obj.categoryName}</td></tr>)
-    // ---------------------------------------------------------------------------------------------------------------------------------------------
-
     return (
         <div className="">
             {/* Nav bar part----------------------------------------------- */}
@@ -115,13 +98,13 @@ function Home() {
                             <div className=" my-3 mx-2 border CategoryProductCard">
                                 <img src={img6} className="card-img-top category-Product-img" alt="..." />
                                 <div className="card-body">
-                                    <p className=" mt-3  btn fs-5 fw-semibold">Cold and Cough</p>
+                                    <p className=" mt-3 fs-5 fw-semibold">Cold and Cough</p>
                                 </div>
                             </div>
                             <div className=" my-3 mx-2 border CategoryProductCard">
                                 <img src={img7} className="card-img-top category-Product-img" alt="..." />
                                 <div className="card-body text-center">
-                                    <p className="  mt-3 fs-5 fw-semibold"  >Eye Care</p>
+                                    <p className="mt-3 fs-5 fw-semibold"  >Eye Care</p>
                                 </div>
                             </div>
 
@@ -333,7 +316,7 @@ function Home() {
                                                             <h6 className="ms-3 mt-4"><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>499</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>615</span></h6>
                                                         </div>
                                                         <div className='col-6'>
-                                                            <img src={img13} className="card-img-top category-Product-img" alt="..." />
+                                                            <img src={img17} className="card-img-top category-Product-img" alt="..." />
                                                         </div>
                                                     </div>
                                                 </div>

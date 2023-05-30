@@ -1,19 +1,19 @@
-import { custPharmacyLogo, offer, img18, img19, img20, bpmonitor, inheler, cyrup } from "../assest/Images";
+import { custPharmacyLogo, offer,img12,img13,img14,img15,img16,img17, img18, img19, img20, bpmonitor, inheler, cyrup } from "../assest/Images";
 import '../CSS Files/App.css'
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 function Customer() {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Greeting
     let CustomerName = sessionStorage.getItem("userName")
     var custname = CustomerName.replace(/"/g, '')
-    
+
     let [greeting, setGreeting] = useState("")
-    useEffect(()=>{
+    useEffect(() => {
         function Greeting() {
-            
+
             var today = new Date();
             let hoursMin = today.getHours() + '.' + today.getMinutes();
             // console.log(hoursMin);
@@ -29,7 +29,7 @@ function Customer() {
         }
         Greeting();
     })
-   
+
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------
     // category data
     let [Categories, setCategories] = useState([]);
@@ -54,7 +54,7 @@ function Customer() {
     let [category, setCategory] = useState("");
     let [cname, setCName] = useState("");
     let [cresult, setResultc] = useState(false);
-    let [cmsg,setcMsg]=useState("");
+    let [cmsg, setcMsg] = useState("");
 
     async function FindCategory() {
         let result = await axios.get("http://localhost:3000/api/customer/viewCategoryByName/" + cname);
@@ -102,7 +102,7 @@ function Customer() {
     let [product, setProducts] = useState("");
     let [pname, setPName] = useState("");
     let [presult, setResultp] = useState(false);
-    let [pmsg,setpMsg]=useState("");
+    let [pmsg, setpMsg] = useState("");
     async function FindProduct() {
         let result = await axios.get("http://localhost:3000/api/customer/viewProductByName/" + pname);
         console.log(result.data)
@@ -323,10 +323,10 @@ function Customer() {
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body text-center mt-3">
-                                       <h5>Are You Sure To Delete Account?</h5>
+                                        <h5>Are You Sure To Delete Account?</h5>
                                     </div>
                                     <div className="text-center m-4">
-                                    <button type="button" className="btn btn-secondary mx-4" data-bs-target="#staticBackdrop" data-bs-toggle="modal" >Cancel</button>
+                                        <button type="button" className="btn btn-secondary mx-4" data-bs-target="#staticBackdrop" data-bs-toggle="modal" >Cancel</button>
                                         <button type="button" className="btn btn-danger mx-4" onClick={deleteEmployee} data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Delete
                                         </button>
@@ -432,7 +432,7 @@ function Customer() {
                                         </div>
                                     </div>
                                     <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -454,6 +454,198 @@ function Customer() {
                         <p className=" text-center " style={{ fontSize: "19px" }}>A pharmacy that respects the autonomy and dignity of each patient. A pharmacy that promotes the right of self-determination and recognizes individual self-worth by encouraging patients to participate in decisions about their health. A pharmacy communicates with patients in terms that are understandable. In all cases, this is the pharmacy that respects personal and cultural differences among patients.</p>
                     </div>
                 </div>
+               {/* --------------------------------------------------------------------------------------------------------------------------------------------- */}
+               {/* Product part */}
+                <section>
+                    <div className="container mt-5">
+                        <h3 className='text-center text-success'>Products Available <i className="bi bi-capsule-pill"></i></h3>
+                        <div className="d-flex flex-wrap">
+                            <div className=" my-3 mx-2 border CategoryProductCard">
+                                <img src={img12} className="card-img-top category-Product-img" alt="..." />
+                                <div className="card-body">
+                                    <div className='text-center'>
+                                        <button className=" mt-3  categoryProduct  btn fs-5 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop7" >Vicks Vaporub</button>
+                                    </div>
+                                    <div className="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel7" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5 text-center" id="staticBackdropLabel7">Vicks Vaporub</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex justify-content-center row'>
+                                                        <div className='col-6'>
+                                                            <h5>Vicks Vaporub 25ml Relief From Cold Cough Headache And Body Pain</h5>
+                                                            <h6 className="ms-3 "><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>85</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>99</span></h6>
+                                                        </div>
+                                                        <div className='col-6'>
+                                                            <img src={img12} className="card-img-top category-Product-img" alt="..." />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer" data-bs-dismiss="modal">
+                                                    <Link to="/addOrder" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>Add to cart<i className="bi bi-cart"></i></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className=" my-3 mx-2 border CategoryProductCard">
+                                <img src={img13} className="card-img-top category-Product-img" alt="..." />
+                                <div className="card-body">
+                                    <button className=" fs-5  categoryProduct  btn  fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop8" >Himalaya Baby Powder</button>
+                                    <div className="modal fade" id="staticBackdrop8" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel8" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5" id="staticBackdropLabel8">Himalaya Baby Powder</h1>
+
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex justify-content-center row'>
+                                                        <div className='col-6 p-5'>
+                                                            <h5>Himalaya Baby Powder Bottle Of 400 G</h5>
+                                                            <h6 className="ms-3 mt-4"><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>225</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>250</span></h6>
+                                                        </div>
+                                                        <div className='col-6'>
+                                                            <img src={img13} className="card-img-top category-Product-img" alt="..." />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer" data-bs-dismiss="modal">
+                                                    <Link to="/addOrder" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>Add to cart<i className="bi bi-cart"></i></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className=" my-3 mx-2 border CategoryProductCard">
+                                <img src={img14} className="card-img-top category-Product-img" alt="..." />
+                                <div className="card-body text-center">
+                                    <button className=" mt-3  categoryProduct  btn fs-5 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop9" >Vicks Inhaler</button>
+                                    <div className="modal fade" id="staticBackdrop9" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5" id="staticBackdropLabel9">Vicks Inhaler</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex justify-content-center row'>
+                                                        <div className='col-6 p-4'>
+                                                            <h5>Vicks Inhaler Keychain Pack Of 1</h5>
+                                                            <h6 className="ms-3 mt-4"><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>62</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>75</span></h6>
+                                                        </div>
+                                                        <div className='col-6'>
+                                                            <img src={img14} className="card-img-top category-Product-img" alt="..." />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer" data-bs-dismiss="modal">
+                                                    <Link to="/addOrder" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>Add to cart<i className="bi bi-cart"></i></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className=" my-3 mx-2 border CategoryProductCard">
+                                <img src={img15} className="card-img-top category-Product-img" alt="..." />
+                                <div className="card-body text-center">
+                                    <button className="  categoryProduct  btn fs-5 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop10" >Optruma Eye Drops</button>
+                                    <div className="modal fade" id="staticBackdrop10" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel10" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5" id="staticBackdropLabel10">Optruma Eye Drops</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex justify-content-center row'>
+                                                        <div className='col-6 p-4'>
+                                                            <h5>Optruma Eye Drops, 10 ml</h5>
+                                                            <h6 className="ms-3 mt-4"><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>118</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>225</span></h6>
+                                                        </div>
+                                                        <div className='col-6'>
+                                                            <img src={img15} className="card-img-top category-Product-img" alt="..." />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer" data-bs-dismiss="modal">
+                                                    <Link to="/addOrder" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>Add to cart<i className="bi bi-cart"></i></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className=" my-3 mx-2 border CategoryProductCard">
+                                <img src={img16} className="card-img-top category-Product-img" alt="..." />
+                                <div className="card-body text-center">
+                                    <button className="  categoryProduct  btn fs-5 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop11" >Himalaya Neem Face Wash</button>
+                                    <div className="modal fade" id="staticBackdrop11" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel11" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5" id="staticBackdropLabel11">Himalaya Neem Face Wash</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex justify-content-center row'>
+                                                        <div className='col-6 p-4'>
+                                                            <h5>Himalaya Purifying Neem Face Wash 150ml</h5>
+                                                            <h6 className="ms-3 mt-4"><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>180</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>199</span></h6>
+                                                        </div>
+                                                        <div className='col-6'>
+                                                            <img src={img16} className="card-img-top category-Product-img" alt="..." />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer" data-bs-dismiss="modal">
+                                                    <Link to="/addOrder" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>Add to cart<i className="bi bi-cart"></i></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className=" my-3 mx-2 border CategoryProductCard">
+                                <img src={img17} className="card-img-top category-Product-img" alt="..." />
+                                <div className="card-body text-center">
+                                    <button className="categoryProduct  btn fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop12" >Blood Glucose Monitoring System</button>
+                                    <div className="modal fade" id="staticBackdrop12" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel12" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5" id="staticBackdropLabel12">Blood Glucose Monitoring System</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex justify-content-center row'>
+                                                        <div className='col-6'>
+                                                            <h5>Blood Glucose Monitoring System APG01 with 25 Test Strips, 1 kit</h5>
+                                                            <h6 className="ms-3 mt-4"><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>499</span><span className="text-decoration-line-through fw-lighter "><i className="bi bi-currency-rupee fw-lighter"></i>615</span></h6>
+                                                        </div>
+                                                        <div className='col-6'>
+                                                            <img src={img17} className="card-img-top category-Product-img" alt="..." />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer" data-bs-dismiss="modal">
+                                                    <Link to="/addOrder" target="_blank" type="button" className='btn btn-primary' style={{ textDecoration: "none" }}>Add to cart<i className="bi bi-cart"></i></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section >
 
                 {/* -------------------------------------------------------------------------------------------------------------------------------------------*/}
                 {/* Lab test offers */}
@@ -470,8 +662,8 @@ function Customer() {
                             </div>
                             <div className="d-flex justify-content-evenly">
                                 <div className="ps-3">
-                                    
-                                        <h5 className=" text-center text-dark fw-bold">Full Body Health Checkup</h5>
+
+                                    <h5 className=" text-center text-dark fw-bold">Full Body Health Checkup</h5>
                                     <p> It covers the Health Test like Heart, Kidney Function Test, Liver Function Test</p>
                                     <h6 className="ms-3 "><i className="bi bi-currency-rupee fw-lighter"></i><span
                                         className="text-decoration-line-through fw-lighter ">999</span><span
@@ -482,7 +674,7 @@ function Customer() {
                                 </div>
                             </div>
                             <div className='text-center'>
-                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{textDecoration:"none"}}>Book Now</Link></button>
+                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{ textDecoration: "none" }}>Book Now</Link></button>
                             </div>
                         </div>
 
@@ -503,7 +695,7 @@ function Customer() {
                                 </div>
                             </div>
                             <div className='text-center'>
-                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{textDecoration:"none"}}>Book Now</Link></button>
+                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{ textDecoration: "none" }}>Book Now</Link></button>
                             </div>
                         </div>
 
@@ -515,7 +707,7 @@ function Customer() {
                             </div>
                             <div className=" d-flex justify-content-evenly">
                                 <div className="ps-3">
-                                   <h5 className="my-1 text-center text-dark">Diabetes Checkup</h5>
+                                    <h5 className="my-1 text-center text-dark">Diabetes Checkup</h5>
                                     <p>Checks your average blood sugar levels over the past 2 or 3 months and how close they are to normal.</p>
                                     <h6 className="ms-3 "><i className="bi bi-currency-rupee fw-lighter"></i><span className="text-decoration-line-through fw-lighter ">999</span><span className="ms-3 fw-bold fs-5"><i className="bi bi-currency-rupee"></i>750</span></h6>
                                 </div>
@@ -524,7 +716,7 @@ function Customer() {
                                 </div>
                             </div>
                             <div className='text-center'>
-                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{textDecoration:"none"}}>Book Now</Link></button>
+                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{ textDecoration: "none" }}>Book Now</Link></button>
                             </div>
                         </div>
                     </div>
@@ -558,7 +750,7 @@ function Customer() {
                                 </div>
                             </div>
                             <div className='text-center'>
-                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{textDecoration:"none"}}>Book Now</Link></button>
+                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{ textDecoration: "none" }}>Book Now</Link></button>
                             </div>
                         </div>
                         <div className=" border border-1 border-dark rounded-4 bg-light" style={{ height: "300px", width: "400px" }}>
@@ -580,7 +772,7 @@ function Customer() {
                                 </div>
                             </div>
                             <div className='text-center'>
-                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{textDecoration:"none"}}>Book Now</Link></button>
+                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{ textDecoration: "none" }}>Book Now</Link></button>
                             </div>
                         </div>
                         <div className=" border border-1 border-dark rounded-4 bg-light" style={{ height: "300px", width: "400px" }}>
@@ -602,7 +794,7 @@ function Customer() {
                                 </div>
                             </div>
                             <div className='text-center'>
-                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{textDecoration:"none"}}>Book Now</Link></button>
+                                <button className='btn btn-outline-primary'><Link to="/AddOrder" style={{ textDecoration: "none" }}>Book Now</Link></button>
                             </div>
                         </div>
 

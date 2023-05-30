@@ -7,8 +7,8 @@ function AddOrder() {
     let [categoryId, setcategoryId] = useState();
     let [productId, setproductId] = useState();
     let [productqty, setproductqty] = useState();
-    let [dateOfOrder] = useState( new Date());
-    
+    let [dateOfOrder] = useState(new Date());
+
     async function order(event) {
         event.preventDefault();
         var order = {
@@ -23,13 +23,12 @@ function AddOrder() {
             let result = await axios.post("http://localhost:3000/api/order/addOrder", order);
             document.getElementById("order").innerHTML = result.data.msg;
             console.log(result);
-        
         }
         catch (error) {
             console.log(error);
         }
     }
-    
+
     function cleanOrderMsg() {
         document.getElementById("order").innerHTML = "";
     }
@@ -44,25 +43,25 @@ function AddOrder() {
             </div>
             <div className="container" style={{ marginLeft: "500px" }}>
                 <form className="p-4 rounded  mt-3 border bg-light" onKeyDown={cleanOrderMsg} onSubmit={order} style={{ height: "auto", width: "500px", boxShadow: "0px 0px 5px greenyellow" }}>
-                <div className="row mb-3">
+                    <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Customer Email:</label>
                         <div className="col-sm-8">
-                            <input type="text" id="custEmail" className="form-control" onChange={(e) => setcustomerEmail(e.target.value)}  />
+                            <input type="text" id="custEmail" className="form-control" onChange={(e) => setcustomerEmail(e.target.value)} />
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Category Id:</label>
                         <div className="col-sm-8">
-                            <input type="number" id="cid" className="form-control" onChange={(e) => setcategoryId(e.target.value)}  />
+                            <input type="number" id="cid" className="form-control" onChange={(e) => setcategoryId(e.target.value)} />
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Product Id:</label>
                         <div className="col-sm-8">
-                            <input type="number" id="pid" className="form-control" onChange={(e) => setproductId(e.target.value)}  />
+                            <input type="number" id="pid" className="form-control" onChange={(e) => setproductId(e.target.value)} />
                         </div>
                     </div>
-                    
+
                     <div className="row mb-3">
                         <label className="col-sm-4 col-form-label">Product quantity:</label>
                         <div className="col-sm-8">
@@ -71,7 +70,7 @@ function AddOrder() {
                     </div>
                     <div className="text-center">
                         <input type="submit" value="Order" className="m-3 btn btn-outline-dark" />
-                        <input type="reset" value="Cancel" className="m-3 btn btn-outline-dark" onClick={cleanOrderMsg}/><br /><br />
+                        <input type="reset" value="Cancel" className="m-3 btn btn-outline-dark" onClick={cleanOrderMsg} /><br /><br />
                     </div>
                     <span id="order"></span>
                 </form>
