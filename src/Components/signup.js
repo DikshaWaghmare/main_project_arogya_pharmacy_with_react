@@ -40,7 +40,6 @@ function SignUp() {
         
     }
     function reset() {
-        // nameValue=""
         document.getElementById("msg").innerHTML = "";
     }
     function cleanMsg() {

@@ -1,7 +1,6 @@
 let express=require("express");
 let router=express.Router();
 let CustController=require("../controller/custController");
-let adminController=require("../controller/adminController");
 let authToken=require("../config/authToken")
 
 //http://localhost:3000/api/customer/signUp

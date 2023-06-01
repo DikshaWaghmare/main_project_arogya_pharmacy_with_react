@@ -26,9 +26,6 @@ let signUp = async (req, res) => {
   if (customer.typeOfUser == "admin") {
     res.json({ msg: "You can not create Admin Account! Try again..." });
   } 
-  // else if (emaildata != null) {
-  //   res.json({ msg: "Email must be unique! Try again..." });
-  // } 
   else {
     try {
       
@@ -42,8 +39,6 @@ let signUp = async (req, res) => {
         res.json({ msg: "Something went wrong.....Try Again!" });
       }
     } catch (err) {
-      // if(err="MongoBulkWriteError: E11000 duplicate key error collection: projectdb.customer index: email_1 dup key: { email: "rahul@gmail.com" }")
-
       res.json({ msg: "Fill all the field or Check all field<br/> Email must be unique! Try again..."});
 
     }

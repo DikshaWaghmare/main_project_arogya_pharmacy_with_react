@@ -1,18 +1,18 @@
 import {Link, Route, Routes} from 'react-router-dom';
-import SignIn from './Components/signin';
-import Home from './Components/home';
-import SignUp from './Components/signup';
-import Admin from './Components/admin';
-import Customer from './Components/customer';
-import AddCategory from './Components/addCategory';
-import AddProduct from './Components/addProduct';
-import AddSalesman from './Components/addSalesman';
+import SignIn from './Components/Signin';
+import Home from './Components/Home';
+import SignUp from './Components/Signup';
+import Admin from './Components/Admin';
+import Customer from './Components/Customer';
+import AddCategory from './Components/AddCategory';
+import AddProduct from './Components/AddProduct';
+import AddSalesman from './Components/AddSalesman';
 import AddOrder from './Components/AddOrder';
 import Category from './Components/Category';
-import Product from './Components/product';
-import Order from './Components/order';
-import Salesman from './Components/salesman';
-import CustData from './Components/customerData';
+import Product from './Components/Product';
+import Order from './Components/Order';
+import Salesman from './Components/Salesman';
+import CustData from './Components/CustomerData';
 function App() {
   return (
     <div className="">
